@@ -1,5 +1,7 @@
 package com.SeleniumTesting.tests;
 
+import com.SeleniumTesting.base.CommonToAllTest;
+import com.SeleniumTesting.driver.DriverManager;
 import com.SeleniumTesting.pages.LoginPage;
 import com.SeleniumTesting.pages.TransactionPage;
 import io.qameta.allure.Description;
@@ -15,14 +17,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class Test_Trans {
+public class Test_Trans extends CommonToAllTest {
     static float total_amount;
     @Description("Verify that total amount")
     @Test
     public void test_total_amount() throws InterruptedException {
-        WebDriver driver = new EdgeDriver();
-        TransactionPage transactionPage=new TransactionPage(driver);
+        TransactionPage transactionPage=new TransactionPage(DriverManager.getDriver());
         String actualresult=transactionPage.transaction_total();
-        Assert.assertEquals(actualresult,"1996.22");
+        Assert.assertEquals(actualresult,"1996.225");
     }
 }
