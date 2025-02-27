@@ -24,7 +24,7 @@ public class LoginPage extends CommonToAllPages {
         enterInput(username,user);
         enterInput(password,pwd);
         clickButton(signButton);
-        custom_wait();
+        custom_imp_wait();
         return getUrl();
     }
 }

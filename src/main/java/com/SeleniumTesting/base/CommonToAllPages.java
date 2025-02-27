@@ -3,11 +3,16 @@ package com.SeleniumTesting.base;
 import com.SeleniumTesting.driver.DriverManager;
 import com.SeleniumTesting.utils.PropertiesReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 import static com.SeleniumTesting.driver.DriverManager.getDriver;
 
 public class CommonToAllPages {
-    static float total_amount;
+
     public CommonToAllPages(){
     }
 
@@ -40,6 +45,7 @@ public class CommonToAllPages {
 
     public String total_amt_cal(int row_count)
     {
+        float total_amount=0;
         String first="//table[@class='table table-padded']/tbody/tr[";
         String second="]/td[5]";
 
@@ -64,6 +70,18 @@ public class CommonToAllPages {
         }
         String actual_result= Float.toString(total_amount);
         return actual_result;
+       }
+
+       public void custom_imp_wait(){
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(1500));
+       }
+
+       public WebElement visibilityofElement(By elementLocation){
+           return new WebDriverWait(getDriver(),Duration.ofSeconds(20)).until(ExpectedConditions.visibilityOfElementLocated(elementLocation));
+       }
+
+       public WebElement getElement(By by){
+         return getDriver().findElement(by);
        }
 
 }
